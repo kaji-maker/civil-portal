@@ -1,0 +1,297 @@
+[
+  {
+    "compiledRelease": {
+      "tender": {
+        "id": "TENDER-2025-NP-DOR-011",
+        "title": "Road Widening and Drainage Works along Mid-Hill Highway (Khandbari Section)",
+        "tenderers": [
+          {"id": "SUPPLIER-TUNDI", "name": "Tundi Construction Pvt. Ltd."},
+          {"id": "SUPPLIER-KALIKA", "name": "Kalika Construction Pvt. Ltd."},
+          {"id": "SUPPLIER-SHARMA", "name": "Sharma & Co. Pvt. Ltd."}
+        ]
+      },
+      "buyer": {
+        "name": "Department of Roads - Ministry of Physical Infrastructure"
+      },
+      "awards": [
+        {
+          "id": "AWARD-2025-NP-DOR-011",
+          "status": "active",
+          "date": "2025-03-15",
+          "value": {
+            "amount": 58240000.00,
+            "currency": "NPR"
+          },
+          "suppliers": [
+            {
+              "id": "SUPPLIER-TUNDI",
+              "name": "Tundi Construction Pvt. Ltd.",
+              "registration_date": "2012-05-18"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "compiledRelease": {
+      "tender": {
+        "id": "TENDER-2025-NP-NEA-024",
+        "title": "Design, Supply and Installation of 132kV Transmission Line (Butwal Section)",
+        "tenderers": [
+          {"id": "SUPPLIER-KALIKA", "name": "Kalika Construction Pvt. Ltd."},
+          {"id": "SUPPLIER-RAMAN", "name": "Raman Construction Pvt. Ltd."}
+        ]
+      },
+      "buyer": {
+        "name": "Nepal Electricity Authority"
+      },
+      "awards": [
+        {
+          "id": "AWARD-2025-NP-NEA-024",
+          "status": "active",
+          "date": "2025-06-22",
+          "value": {
+            "amount": 124500000.00,
+            "currency": "NPR"
+          },
+          "suppliers": [
+            {
+              "id": "SUPPLIER-KALIKA",
+              "name": "Kalika Construction Pvt. Ltd.",
+              "registration_date": "2008-11-04"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "compiledRelease": {
+      "tender": {
+        "id": "TENDER-2025-NP-DOR-089",
+        "title": "Upgrading and Asphalt Concrete Paving of Postal Highway (Janakpur Section)",
+        "tenderers": [
+          {"id": "SUPPLIER-RAMAN", "name": "Raman Construction Pvt. Ltd."}
+        ]
+      },
+      "buyer": {
+        "name": "Department of Roads - Ministry of Physical Infrastructure"
+      },
+      "awards": [
+        {
+          "id": "AWARD-2025-NP-DOR-089",
+          "status": "active",
+          "date": "2025-11-05",
+          "value": {
+            "amount": 89200000.00,
+            "currency": "NPR"
+          },
+          "suppliers": [
+            {
+              "id": "SUPPLIER-RAMAN",
+              "name": "Raman Construction Pvt. Ltd.",
+              "registration_date": "2015-09-12"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "compiledRelease": {
+      "tender": {
+        "id": "TENDER-2025-NP-DOR-102",
+        "title": "Emergency Landslide Stabilization and Retaining Wall Construction along Trishuli Corridor",
+        "tenderers": [
+          {"id": "SUPPLIER-GOLDEN", "name": "Golden Horizon Tech & Construction Pvt. Ltd."}
+        ]
+      },
+      "buyer": {
+        "name": "Department of Roads - Ministry of Physical Infrastructure"
+      },
+      "awards": [
+        {
+          "id": "AWARD-2025-NP-DOR-102",
+          "status": "active",
+          "date": "2025-11-20",
+          "value": {
+            "amount": 18500000.00,
+            "currency": "NPR"
+          },
+          "suppliers": [
+            {
+              "id": "SUPPLIER-GOLDEN",
+              "name": "Golden Horizon Tech & Construction Pvt. Ltd.",
+              "registration_date": "2025-11-15"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "compiledRelease": {
+      "tender": {
+        "id": "TENDER-2026-NP-LMC-044",
+        "title": "Supply and Installation of Smart CCTV Surveillance System in Lalitpur Core Zones",
+        "tenderers": [
+          {"id": "SUPPLIER-YOMA", "name": "Yoma Ma. JV"},
+          {"id": "SUPPLIER-NEPALTECH", "name": "Nepal Tech Solutions"},
+          {"id": "SUPPLIER-KATHMANDU", "name": "Kathmandu Allied Services"}
+        ]
+      },
+      "buyer": {
+        "name": "Lalitpur Metropolitan City Office"
+      },
+      "awards": [
+        {
+          "id": "AWARD-2026-NP-LMC-044",
+          "status": "active",
+          "date": "2026-02-14",
+          "value": {
+            "amount": 41250000.00,
+            "currency": "NPR"
+          },
+          "suppliers": [
+            {
+              "id": "SUPPLIER-YOMA",
+              "name": "Yoma Ma. JV",
+              "registration_date": "2018-04-30"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "compiledRelease": {
+      "tender": {
+        "id": "TENDER-2026-NP-KMC-091",
+        "title": "Heritage Restoration and Reconstruction Works at Ranipokhari Heritage Precinct",
+        "tenderers": [
+          {"id": "SUPPLIER-SAMANANTAR", "name": "Samanantar Construction Pvt. Ltd."},
+          {"id": "SUPPLIER-SWACHCHHANDA", "name": "Swachchhanda Nirman Sewa"}
+        ]
+      },
+      "buyer": {
+        "name": "Kathmandu Metropolitan City Office"
+      },
+      "awards": [
+        {
+          "id": "AWARD-2026-NP-KMC-091",
+          "status": "active",
+          "date": "2026-03-18",
+          "value": {
+            "amount": 62000000.00,
+            "currency": "NPR"
+          },
+          "suppliers": [
+            {
+              "id": "SUPPLIER-SAMANANTAR",
+              "name": "Samanantar Construction Pvt. Ltd.",
+              "registration_date": "2014-02-20"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "compiledRelease": {
+      "tender": {
+        "id": "TENDER-2026-NP-MOWS-008",
+        "title": "Distribution Pipeline Extension under Melamchi Water Supply Project Phase 2",
+        "tenderers": [
+          {"id": "SUPPLIER-SHARMA", "name": "Sharma & Co. Pvt. Ltd."}
+        ]
+      },
+      "buyer": {
+        "name": "Ministry of Water Supply"
+      },
+      "awards": [
+        {
+          "id": "AWARD-2026-NP-MOWS-008",
+          "status": "active",
+          "date": "2026-05-02",
+          "value": {
+            "amount": 157800000.00,
+            "currency": "NPR"
+          },
+          "suppliers": [
+            {
+              "id": "SUPPLIER-SHARMA",
+              "name": "Sharma & Co. Pvt. Ltd.",
+              "registration_date": "1995-10-10"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "compiledRelease": {
+      "tender": {
+        "id": "TENDER-2026-NP-NEA-142",
+        "title": "Substation Automation and SCADA Integration at Lalitpur Substation",
+        "tenderers": [
+          {"id": "SUPPLIER-LALITPUR-SEC", "name": "Lalitpur Security & Automation Systems"}
+        ]
+      },
+      "buyer": {
+        "name": "Nepal Electricity Authority"
+      },
+      "awards": [
+        {
+          "id": "AWARD-2026-NP-NEA-142",
+          "status": "active",
+          "date": "2026-06-05",
+          "value": {
+            "amount": 24800000.00,
+            "currency": "NPR"
+          },
+          "suppliers": [
+            {
+              "id": "SUPPLIER-LALITPUR-SEC",
+              "name": "Lalitpur Security & Automation Systems",
+              "registration_date": "2026-05-30"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "compiledRelease": {
+      "tender": {
+        "id": "TENDER-2026-NP-DOHS-063",
+        "title": "Procurement of Essential Medical Equipment and Neonatal Ventilators",
+        "tenderers": [
+          {"id": "SUPPLIER-ASHISH", "name": "Ashish Nirman Sewa & Suppliers"},
+          {"id": "SUPPLIER-KUMAR", "name": "Kumar Shrestha Construction"}
+        ]
+      },
+      "buyer": {
+        "name": "Department of Health Services"
+      },
+      "awards": [
+        {
+          "id": "AWARD-2026-NP-DOHS-063",
+          "status": "active",
+          "date": "2026-06-12",
+          "value": {
+            "amount": 34500000.00,
+            "currency": "NPR"
+          },
+          "suppliers": [
+            {
+              "id": "SUPPLIER-ASHISH",
+              "name": "Ashish Nirman Sewa & Suppliers",
+              "registration_date": "2006-03-25"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

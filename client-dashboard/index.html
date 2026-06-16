@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Portal: Follow Local Public Money</title>
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons for professional visuals -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Header -->
+        <header class="top-header">
+            <div class="logo-area">
+                <div class="logo-glow"></div>
+                <i class="fa-solid fa-landmark-dome logo-icon"></i>
+                <span class="logo-text">CIVIL <span class="logo-subtext">PORTAL</span></span>
+            </div>
+            <div class="system-status">
+                <span class="pulse-indicator status-online"></span>
+                <span class="status-label">Follow Local Public Money</span>
+            </div>
+        </header>
+
+        <!-- Top Hero Banner -->
+        <section class="hero-banner">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Civil Portal: Follow Local Public Money</h1>
+                <p class="hero-desc">
+                    An open-access dashboard for citizens to monitor infrastructure spending, check public tenders, and track high-risk procurement anomalies in local budgets.
+                </p>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Body Layout: Sidebar + Main Area -->
+        <div class="dashboard-body">
+            <!-- Main Content Area -->
+            <main class="main-content">
+                <!-- Dynamic Top-Level Macro Overview Grid -->
+                <div class="quick-filters-container three-columns">
+                    <!-- Card 1: Total Procurement Volume -->
+                    <div class="metric-card interactive-card active-filter" id="card-total-volume">
+                        <div class="metric-icon-wrapper volume-icon">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                        <div class="metric-info">
+                            <span class="metric-label">Total Procurement Volume</span>
+                            <h2 class="metric-value" id="total-volume-value">रू ०.००</h2>
+                            <span class="metric-action-text"><i class="fa-solid fa-chart-line"></i> Cumulative public spending</span>
+                        </div>
+                    </div>
+                    <!-- Card 2: Open Active Tenders -->
+                    <div class="metric-card interactive-card" id="card-active-tenders">
+                        <div class="metric-icon-wrapper active-icon">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <div class="metric-info">
+                            <span class="metric-label">Open Active Tenders</span>
+                            <h2 class="metric-value" id="active-tenders-count">०</h2>
+                            <span class="metric-action-text"><i class="fa-solid fa-hourglass-half"></i> Pending bidding notices</span>
+                        </div>
+                    </div>
+                    <!-- Card 3: High-Risk Flag Count -->
+                    <div class="metric-card interactive-card alert-card" id="card-flagged-alerts">
+                        <div class="metric-icon-wrapper alert-icon">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div class="metric-info">
+                            <span class="metric-label">High-Risk Flag Count</span>
+                            <h2 class="metric-value" id="flagged-alerts-count">०</h2>
+                            <span class="metric-action-text"><i class="fa-solid fa-shield-halved"></i> Single-bidder anomalies</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls & Search -->
+                <div class="content-header">
+                    <div class="title-section">
+                        <i class="fa-solid fa-clipboard-list header-icon"></i>
+                        <h2>Contracts Registry</h2>
+                    </div>
+                    
+                    <div class="controls-section">
+                        <!-- Search Box -->
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" id="contract-search" placeholder="Search by Tender ID, Procuring Entity, or Contractor...">
+                        </div>
+                        
+                        <!-- Status Toggle Bar -->
+                        <div class="status-toggle-bar">
+                            <button class="toggle-btn active" id="btn-show-all">Show All (---)</button>
+                            <button class="toggle-btn" id="btn-active-bids">Active Bids (---)</button>
+                            <button class="toggle-btn" id="btn-flagged-audits">Flagged Audits (---)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contracts Container -->
+                <div class="contracts-container">
+                    <!-- Loading Spinner -->
+                    <div id="contracts-loader" class="loader">
+                        <div class="spinner"></div>
+                        <p>Analyzing public spending records...</p>
+                    </div>
+                    
+                    <!-- No Data Message -->
+                    <div id="no-contracts-message" class="no-data-card hidden">
+                        <i class="fa-solid fa-circle-exclamation empty-icon"></i>
+                        <h3>No projects match your filter</h3>
+                        <p>Try resetting the filters or typing a different search query.</p>
+                    </div>
+
+                    <!-- Sentinel Cards Grid -->
+                    <div id="contracts-grid" class="sentinel-card-grid hidden">
+                        <!-- Populated dynamically by JavaScript -->
+                    </div>
+
+                    <!-- Pagination Controls -->
+                    <div id="pagination-controls" class="pagination-controls hidden">
+                        <button id="prev-btn" class="pagination-btn"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+                        <span id="page-indicator" class="page-indicator">Page 1</span>
+                        <button id="next-btn" class="pagination-btn">Next <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Sidebar: Contractor Leaderboard -->
+            <aside class="sidebar">
+                <div class="panel-header">
+                    <i class="fa-solid fa-ranking-star header-icon"></i>
+                    <h2>Contractor Leaderboard</h2>
+                </div>
+                <p class="panel-subtitle">Contracting firms ranked by overall volume of allocated public money. Red flags indicate flagged project warnings.</p>
+                
+                <div class="leaderboard-container">
+                    <div id="leaderboard-loader" class="loader">
+                        <div class="spinner"></div>
+                        <p>Loading leaderboard...</p>
+                    </div>
+                    <div id="leaderboard-list" class="leaderboard-list hidden">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bottom-footer">
+            <p>&copy; 2026 Civil Portal. Open data platform for civic procurement tracking. All algorithms operational.</p>
+        </footer>
+    </div>
+
+    <!-- Forensic Audit Modal Container -->
+    <div id="modalOverlay" class="modal-overlay hidden">
+        <div id="auditModal" class="audit-modal">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-microscope"></i> Forensic Audit Investigation Report</h2>
+                <button id="modalCloseBtn" class="modal-close-btn">&times;</button>
+            </div>
+            <div id="modalRiskIndicator" class="modal-risk-indicator">
+                <span id="modalRiskVerdict">Risk Verdict: HIGH RISK</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <label>Project Title</label>
+                    <h3 id="modalProjectTitle">Project Title Placeholder</h3>
+                </div>
+                <div class="modal-grid">
+                    <div class="modal-section">
+                        <label>Tender Identifier</label>
+                        <span id="modalTenderId" class="code-font">TENDER-ID-000</span>
+                    </div>
+                    <div class="modal-section">
+                        <label>Bidders Count</label>
+                        <span id="modalBiddersCount">0 bidders</span>
+                    </div>
+                    <div class="modal-section">
+                        <label>Ministry / Buyer</label>
+                        <span id="modalBuyer">Buyer Name Placeholder</span>
+                    </div>
+                    <div class="modal-section">
+                        <label>Amount Allocated</label>
+                        <span id="modalAmount" class="amount-val">रू ०.००</span>
+                    </div>
+                    <div class="modal-section">
+                        <label>Award Date</label>
+                        <span id="modalAwardDate">Date Placeholder</span>
+                    </div>
+                    <div class="modal-section">
+                        <label>Registration Date</label>
+                        <span id="modalRegDate">Date Placeholder</span>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <label>Forensic Audit Analysis Breakdown</label>
+                    <div id="modalFindingsLog" class="findings-log">
+                        Analysis details placeholder.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modalCloseFooterBtn" class="modal-action-btn">Close Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script file -->
+    <script src="app.js"></script>
+</body>
+</html>

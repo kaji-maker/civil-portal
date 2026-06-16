@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # The Core Ledger: PostgreSQL Database with PostGIS extensions
+  gov-db:
+    image: postgis/postgis:15-3.3
+    container_name: gov_transparency_db
+    environment:
+      POSTGRES_USER: transparency_admin
+      POSTGRES_PASSWORD: secure_procure_pass99
+      POSTGRES_DB: civil_portal_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - transparency-network
+    restart: unless-stopped
+
+  # Orchestrated Data Extraction Agent for Phase 1 (Python)
+  procurement-scraper:
+    build:
+      context: ./core-scrapers
+      dockerfile: Dockerfile
+    container_name: procurement_scraper_agent
+    depends_on:
+      - gov-db
+    environment:
+      - DATABASE_URL=postgresql://transparency_admin:secure_procure_pass99@gov-db:5432/civil_portal_db
+      - STREAM_URL=http://backend-api:8000/api/v1/contracts/mock-ocds-stream
+    networks:
+      - transparency-network
+    volumes:
+      - ./core-scrapers:/app
+    profiles:
+      - scrapers
+
+  # Government Transparency API Engine
+  backend-api:
+    build:
+      context: ./backend-api
+      dockerfile: Dockerfile
+    container_name: backend_api_service
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://transparency_admin:secure_procure_pass99@gov-db:5432/civil_portal_db
+    depends_on:
+      - gov-db
+    networks:
+      - transparency-network
+    restart: unless-stopped
+
+  # Phase 1 User Dashboard UI
+  client-dashboard:
+    build:
+      context: ./client-dashboard
+      dockerfile: Dockerfile
+    container_name: client_dashboard_ui
+    ports:
+      - "3000:80"
+    networks:
+      - transparency-network
+    restart: unless-stopped
+
+volumes:
+  db-data:
+    driver: local
+
+networks:
+  transparency-network:
+    driver: bridge

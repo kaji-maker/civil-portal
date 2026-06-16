@@ -1,0 +1,28 @@
+# Database Credentials & Environment Configuration
+.env
+*.env
+config/secrets.json
+
+# Python Dependencies & Environments
+__pycache__/
+*.pyc
+.venv/
+venv/
+ENV/
+build/
+dist/
+
+# Playwright Browser Binaries & Execution Logs
+.playwright/
+downloads/
+*.log
+
+# Node.js Frontend Dependencies & System Files
+node_modules/
+.DS_Store
+.idea/
+.vscode/
+
+# Local Data Backups
+*.xlsx
+*.jsonl
