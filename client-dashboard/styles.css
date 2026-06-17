@@ -1367,3 +1367,47 @@ body {
     font-size: 0.9rem;
     color: var(--text-secondary);
 }
+
+/* Responsive Data Intelligence Toolbar styling */
+.analytics-toolbar {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.analytics-toolbar select {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--accent-cyan);
+    color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-family: var(--font-family-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    flex: 1;
+    min-width: 180px;
+}
+
+.analytics-toolbar select:hover {
+    border-color: #38bdf8;
+    background: rgba(17, 24, 39, 0.85);
+}
+
+.analytics-toolbar select:focus {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
+}
+
+.analytics-toolbar select option {
+    background-color: var(--bg-secondary);
+    color: #ffffff;
+}

@@ -212,12 +212,39 @@ async function fetchContracts() {
     }
 }
 
-// Apply client-side status and text search filters
+// Map department/buyer names on the fly
+function getDepartmentClassification(deptName) {
+    if (!deptName) return 'other';
+    const name = deptName.toLowerCase();
+    if (name.includes('roads') || name.includes('dor')) {
+        return 'DoR';
+    }
+    if (name.includes('electricity') || name.includes('nea')) {
+        return 'NEA';
+    }
+    if (name.includes('telecom') || name.includes('ndcl')) {
+        return 'NDCL';
+    }
+    if (name.includes('municipality') || name.includes('metropolitan') || name.includes('rural')) {
+        return 'municipalities';
+    }
+    return 'other';
+}
+
+// Apply client-side status, search, and dynamic intelligence toolbar filters
 function applyClientSideFilters() {
     const query = contractSearch.value.trim().toLowerCase();
+    
+    const selectDept = document.getElementById('select-dept');
+    const selectYear = document.getElementById('select-year');
+    const selectMonth = document.getElementById('select-month');
+    
+    const deptVal = selectDept ? selectDept.value : 'all';
+    const yearVal = selectYear ? selectYear.value : 'all';
+    const monthVal = selectMonth ? selectMonth.value : 'all';
 
     filteredContracts = allContracts.filter(contract => {
-        // Status Toggle Filter
+        // 1. Status Toggle Filter
         if (currentFilterStatus === 'active' && contract.tender_status !== 'OPEN') {
             return false;
         }
@@ -225,7 +252,41 @@ function applyClientSideFilters() {
             return false;
         }
 
-        // Search Filter (Tender ID, Procuring Entity/Buyer, Contractor/Winner)
+        // 2. Department Filter
+        if (deptVal !== 'all') {
+            const classification = getDepartmentClassification(contract.ministry_department);
+            if (classification !== deptVal) {
+                return false;
+            }
+        }
+
+        // Parse date for Year/Month matching
+        const dateStr = contract.award_date || contract.submission_deadline;
+
+        // 3. Year Filter
+        if (yearVal !== 'all') {
+            if (!dateStr) return false;
+            const yearStr = dateStr.substring(0, 4);
+            const year = parseInt(yearStr, 10);
+            if (isNaN(year)) return false;
+            
+            if (yearVal === '2026' && year !== 2026) return false;
+            if (yearVal === '2025' && year !== 2025) return false;
+            if (yearVal === 'prior' && year >= 2025) return false;
+        }
+
+        // 4. Month Filter
+        if (monthVal !== 'all') {
+            if (!dateStr) return false;
+            const parts = dateStr.split('-');
+            if (parts.length < 2) return false;
+            const month = parseInt(parts[1], 10);
+            if (isNaN(month) || month !== parseInt(monthVal, 10)) {
+                return false;
+            }
+        }
+
+        // 5. Search Filter (Tender ID, Procuring Entity/Buyer, Contractor/Winner, Title)
         if (query) {
             const tenderId = (contract.tender_id || '').toLowerCase();
             const procuringEntity = (contract.ministry_department || '').toLowerCase();
@@ -240,6 +301,9 @@ function applyClientSideFilters() {
 
         return true;
     });
+
+    // Recalculate summary metrics dynamically for the currently filtered subset
+    calculateMacroStats(filteredContracts);
 
     renderFilteredContracts();
 }
@@ -684,6 +748,15 @@ document.addEventListener('DOMContentLoaded', () => {
             applyClientSideFilters();
         }, 150); // Small debounce to keep typing smooth
     });
+
+    // Event: Dropdown filter change listeners (in-memory)
+    const selectDept = document.getElementById('select-dept');
+    const selectYear = document.getElementById('select-year');
+    const selectMonth = document.getElementById('select-month');
+
+    if (selectDept) selectDept.addEventListener('change', () => { currentPage = 1; applyClientSideFilters(); });
+    if (selectYear) selectYear.addEventListener('change', () => { currentPage = 1; applyClientSideFilters(); });
+    if (selectMonth) selectMonth.addEventListener('change', () => { currentPage = 1; applyClientSideFilters(); });
 
     // Event: Pagination listeners (in-memory client side)
     prevBtn.addEventListener('click', () => {
