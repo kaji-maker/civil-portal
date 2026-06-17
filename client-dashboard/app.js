@@ -394,7 +394,11 @@ function renderContractsGrid(contractsToRender) {
         let executionTrackingHtml = '';
         if (!isOpen) {
             const awardDate = contract.award_date ? new Date(contract.award_date) : null;
-            const currentDate = new Date("2026-06-16T21:46:22");
+            let currentDate = new Date();
+            const baseDate = new Date("2026-06-16T21:46:22");
+            if (currentDate < baseDate) {
+                currentDate = baseDate;
+            }
             const defaultWindow = 365 * 24 * 60 * 60 * 1000;
             
             let elapsed = 0;
@@ -424,9 +428,14 @@ function renderContractsGrid(contractsToRender) {
             
             const amount = parseFloat(contract.amount_allocated) || 0;
             const factor = 0.6 + seedValue * 0.55; // between 60% and 115%
-            const disbursement = amount * factor;
             
-            const budgetConsumptionRatio = amount > 0 ? (disbursement / amount) * 100 : 0;
+            // To prevent newly awarded contracts from showing 100% budget burn,
+            // we scale the budget consumption with the physical completion progress fraction.
+            // When progress is 100%, the burn ranges from 60% to 115%.
+            const progressFraction = completionPercentage / 100;
+            const budgetConsumptionRatio = factor * progressFraction * 100;
+            
+            const disbursement = amount * (budgetConsumptionRatio / 100);
             const isOverrun = budgetConsumptionRatio > 100;
             
             const timelineClass = isDelayed ? 'delayed' : 'normal';
